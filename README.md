@@ -43,4 +43,4 @@ Built with love for Conway and the weird beautiful corner of mathematics that mo
 
 Enjoy the void.
 
-— 2026
+— Jordan, 2026
