@@ -1,0 +1,121 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FRACTRAN • CONWAY'S INFINITE MACHINE</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='70' font-size='80' fill='%2300ff9d'%3Eƒ%3C/text%3E%3C/svg%3E">
+</head>
+
+<body>
+  <div class="scanlines"></div>
+
+  <header class="header">
+    <div class="logo">
+      <span class="glitch" data-text="FRACTRAN">FRACTRAN</span>
+      <div class="subtitle">JOHN HORTON CONWAY • 1972</div>
+    </div>
+    <nav>
+      <button id="presets-btn" class="nav-btn">PRESETS</button>
+      <button id="export-btn" class="nav-btn">EXPORT SEQ</button>
+      <button id="info-btn" class="nav-btn">THEORY</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- LEFT PANEL: CONTROLS -->
+    <div class="control-panel glass">
+      <div class="panel-header">
+        <span>PROGRAM LOADER</span>
+        <div class="led"></div>
+      </div>
+
+      <textarea id="program-input" class="code-input" spellcheck="false">17/91, 78/85, 19/51, 23/38, 29/33, 77/29, 95/23, 77/19, 1/17, 11/13, 13/11, 15/14, 15/2, 55/1</textarea>
+
+      <div class="input-group">
+        <label>INITIAL N</label>
+        <input type="number" id="start-n" value="2" class="number-input">
+      </div>
+
+      <div class="controls">
+        <button id="run-btn" class="btn primary">▶ RUN SIMULATION</button>
+        <button id="pause-btn" class="btn secondary">⏸ PAUSE</button>
+        <button id="step-btn" class="btn tertiary">STEP →</button>
+        <button id="reset-btn" class="btn danger">RESET</button>
+      </div>
+
+      <div class="slider-group">
+        <label>SPEED <span id="speed-val">50</span>ms</label>
+        <input type="range" id="speed-slider" min="10" max="500" value="50">
+      </div>
+
+      <div class="presets">
+        <button data-program="3/2, 1/3" class="preset-btn">Classic Halter</button>
+        <button data-program="3/2, 5/3, 1/5" class="preset-btn">Prime Finder Lite</button>
+        <button data-program="3/2, 6/3" class="preset-btn">Power Tower</button>
+        <button data-program="2/7, 7/2" class="preset-btn">Oscillator</button>
+        <button data-program="17/91, 78/85, 19/51, 23/38, 29/33, 77/29, 95/23, 77/19, 1/17, 11/13, 13/11, 15/14, 15/2, 55/1" class="preset-btn active">CONWAY PRIMES</button>
+      </div>
+    </div>
+
+    <!-- CENTER: VISUALIZER -->
+    <div class="visualizer glass">
+      <canvas id="viz-canvas" width="620" height="420"></canvas>
+
+      <div class="current-n">
+        <div class="label">CURRENT INTEGER</div>
+        <div id="current-number" class="number-display">2</div>
+        <div id="fraction-applied" class="fraction">× <span id="num-val">15</span>/<span id="den-val">2</span></div>
+      </div>
+
+      <div class="status">
+        <div id="step-count">STEP <span id="step-num">000</span></div>
+        <div id="prime-indicator" class="prime-flash">PRIME POWER DETECTED</div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: SEQUENCE -->
+    <div class="sequence-panel glass">
+      <div class="panel-header">
+        <span>OUTPUT SEQUENCE</span>
+        <span id="sequence-length" class="count">01</span>
+      </div>
+      <div id="sequence-list" class="sequence-log"></div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <span class="dot power2"></span> 2<sup>k</sup>
+        </div>
+        <div class="legend-item">
+          <span class="dot halt"></span> HALT
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER BAR -->
+  <footer class="footer">
+    <div class="footer-left">
+      TURING COMPLETE • 14 FRACTIONS MAX • BUILT FOR THE VOID
+    </div>
+    <div class="footer-right">
+      <span id="runtime">0.00s</span> • PRESS <kbd>SPACE</kbd> TO STEP •
+      <a href="#" id="github-link">GITHUB</a>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content glass">
+      <h2>THE FRACTRAN LEGEND</h2>
+      <p>Invented by John Conway in 1972, FRACTRAN is a Turing-complete esoteric language consisting solely of fractions. Start with any integer n. Multiply by the first fraction that yields another integer. Repeat forever — or until you hit a wall.</p>
+      <p>The legendary 14-fraction program above produces every power of 2 exactly when the exponent is prime. Pure mathematical poetry.</p>
+      <button id="close-modal" class="btn primary">CLOSE THE VOID</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
